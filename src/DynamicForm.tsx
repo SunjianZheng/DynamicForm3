@@ -13,7 +13,25 @@ import {
 } from 'rc-field-form/es/interface';
 import { getByteLen } from './utils';
 
-import { NomarInput } from '.';
+import {
+  NomarInput,
+  NomarSelect,
+  NomarSwitch,
+  NomarTextArea,
+  NomarDatePicker,
+  ExtraInput,
+  RangeDatePicker,
+  NomarRadio,
+  NomarCheckBox,
+  CoverRadio,
+  NomarImagePicker,
+  NomarCustom,
+  MultiplePicker,
+  AddressPicker,
+  NomarText,
+  NomarPicker,
+  NomarFile,
+} from './components';
 
 import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
 
@@ -24,6 +42,22 @@ export interface IAliasProps {
 
 const FormItemType = {
   input: NomarInput,
+  select: NomarSelect,
+  area: NomarTextArea,
+  date: NomarDatePicker,
+  switch: NomarSwitch,
+  radio: NomarRadio,
+  extraInput: ExtraInput,
+  rangeDatePicker: RangeDatePicker,
+  checkbox: NomarCheckBox,
+  coverRadio: CoverRadio,
+  image: NomarImagePicker,
+  custom: NomarCustom,
+  multiplePicker: MultiplePicker,
+  addressPicker: AddressPicker,
+  text: NomarText,
+  picker: NomarPicker,
+  file: NomarFile,
 };
 
 export interface IFormItemProps {

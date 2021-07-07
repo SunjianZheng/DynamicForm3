@@ -10,4 +10,4 @@ export * from 'rc-field-form/es/interface';
 
 export { Field, Form, DynamicForm };
 
-// export default DynamicForm;
+export default DynamicForm;

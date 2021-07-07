@@ -31,6 +31,7 @@
   "dependencies": {
     "@bang88/china-city-data": "^1.0.0",
     "antd-mobile": "^2.3.4",
+    "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
     "dayjs": "^1.10.6",
     "dumi-theme-mobile": "^1.1.6",
