@@ -17,7 +17,8 @@
   "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
   "gitHooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verifyCommit.js"
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
