@@ -1,4 +1,4 @@
-# dynamicForm3
+# @alitajs/dform3
 
 ## Getting Started
 
@@ -25,4 +25,5 @@ Build library via `father-build`,
 ```bash
 $ npm run build
 ```
+
 # DynamicForm3

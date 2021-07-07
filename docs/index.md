@@ -1,6 +1,6 @@
 ---
 hero:
-  title: dynamicForm3
+  title: alitajs/dform
   desc: dynamicForm3 site example
   actions:
     - text: Getting Started

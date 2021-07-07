@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "dynamicForm3",
+  "name": "@alitajs/dform",
   "version": "1.0.0",
   "scripts": {
     "start": "dumi dev",
@@ -29,7 +29,10 @@
     ]
   },
   "dependencies": {
+    "@bang88/china-city-data": "^1.0.0",
     "antd-mobile": "^2.3.4",
+    "copy-to-clipboard": "^3.3.1",
+    "dayjs": "^1.10.6",
     "dumi-theme-mobile": "^1.1.6",
     "rc-field-form": "^1.21.1",
     "react": "^16.12.0"
