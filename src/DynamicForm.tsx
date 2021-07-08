@@ -12,6 +12,7 @@ import {
   Rule,
 } from 'rc-field-form/es/interface';
 import { getByteLen } from './utils';
+import './index.less';
 
 import {
   NomarInput,
