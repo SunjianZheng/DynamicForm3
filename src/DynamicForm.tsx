@@ -1,9 +1,8 @@
 /* eslint-disable no-param-reassign */
 import React, { FC, useEffect, useState } from 'react';
-import { List, Card, WingBlank } from 'antd-mobile';
+import { List } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
-import { CardHeaderPropsType } from 'antd-mobile/es/card/PropsType';
 import Form from 'rc-field-form';
 import {
   Store,
@@ -59,7 +58,7 @@ const FormItemType = {
   text: NomarText,
   picker: NomarPicker,
   file: NomarFile,
-};
+} as any;
 
 export interface IFormItemProps {
   type:
@@ -129,21 +128,7 @@ export interface IFormItemProps {
   className?: string;
 }
 
-interface CardDForm extends CardHeaderPropsType {
-  data: IFormItemProps[];
-}
-
-export type DFormData =
-  | IFormItemProps[][]
-  | IFormItemProps[]
-  | CardDForm
-  | CardDForm[];
-type DFormType = 'NORMAL' | 'NORMALLIST' | 'CARD' | 'CARDLIST';
-
-// 'NORMAL':[{type,title,fieldProps}]
-// 'NORMALLIST':[[{type,title,fieldProps}],[{type,title,fieldProps}]]
-// 'CARD':{title,data:[]}
-// 'CARDLIST':[{title,data:[]}]
+export type DFormData = IFormItemProps[];
 
 export interface IDynamicFormProps {
   data: DFormData; // 动态表单数据
@@ -157,8 +142,6 @@ export interface IDynamicFormProps {
   autoLineFeed?: boolean; // 当 title 过长自动增加 positionType 为 vertical
   failScroll?: boolean; // 当字段 rule 验证不通过后，是否滚动到 错误位置，默认开启
 }
-
-// const nodeEnvIsDev = process.env.NODE_ENV === 'development';
 
 export const getFormItem = (formItem: IFormItemProps, allDisabled: boolean) => {
   const {
@@ -208,28 +191,28 @@ export const defaultFailed = (
   if (onFinishFailed) onFinishFailed(errorInfo);
 };
 
-/**
- * 根据传进来的数据判断 DForm 的类型
- * @param data
- */
-export const getDFormType = (data: DFormData): DFormType => {
-  if (data instanceof Array) {
-    let isTwoDimensional = false;
-    let isCardListType = false;
-    data.forEach((item: IFormItemProps[] | IFormItemProps | CardDForm) => {
-      if (item instanceof Array) {
-        isTwoDimensional = true;
-      } else {
-        isCardListType = !(item as IFormItemProps).fieldProps;
-      }
-    });
-    if (isTwoDimensional) {
-      return 'NORMALLIST';
-    }
-    return isCardListType ? 'CARDLIST' : 'NORMAL';
-  }
-  return 'CARD';
-};
+// /**
+//  * 根据传进来的数据判断 DForm 的类型
+//  * @param data
+//  */
+// export const getDFormType = (data: DFormData): DFormType => {
+//   if (data instanceof Array) {
+//     let isTwoDimensional = false;
+//     let isCardListType = false;
+//     data.forEach((item: IFormItemProps[] | IFormItemProps | CardDForm) => {
+//       if (item instanceof Array) {
+//         isTwoDimensional = true;
+//       } else {
+//         isCardListType = !(item as IFormItemProps).fieldProps;
+//       }
+//     });
+//     if (isTwoDimensional) {
+//       return 'NORMALLIST';
+//     }
+//     return isCardListType ? 'CARDLIST' : 'NORMAL';
+//   }
+//   return 'CARD';
+// };
 
 const changeData = (oldData: IFormItemProps[], autoLineFeed: boolean) =>
   oldData.map((item) => {
@@ -252,30 +235,6 @@ const changeData = (oldData: IFormItemProps[], autoLineFeed: boolean) =>
     return item;
   });
 
-const renderCardMain = (
-  formData: DFormData,
-  allDisabled: boolean,
-  autoLineFeed: boolean,
-) => {
-  const { data, ...otherData } = formData as CardDForm;
-  return (
-    <WingBlank size="lg">
-      <Card
-        style={{
-          paddingBottom: 0,
-        }}
-      >
-        <Card.Header {...otherData} />
-        <List>
-          {changeData(data as IFormItemProps[], autoLineFeed).map((item) =>
-            getFormItem(item, allDisabled),
-          )}
-        </List>
-      </Card>
-    </WingBlank>
-  );
-};
-
 const renderListMain = (
   formData: DFormData,
   allDisabled: boolean,
@@ -289,28 +248,6 @@ const renderListMain = (
     </List>
   </>
 );
-
-const renderMainList = (
-  type: DFormType,
-  formData: DFormData,
-  allDisabled: boolean,
-  autoLineFeed: boolean,
-) => {
-  if (type === 'CARD') {
-    return renderCardMain(formData, allDisabled, autoLineFeed);
-  }
-  if (type === 'CARDLIST') {
-    return (formData as CardDForm[]).map((item) =>
-      renderCardMain(item, allDisabled, autoLineFeed),
-    );
-  }
-  if (type === 'NORMALLIST') {
-    return (formData as IFormItemProps[][]).map((item) =>
-      renderListMain(item, allDisabled, autoLineFeed),
-    );
-  }
-  return renderListMain(formData, allDisabled, autoLineFeed);
-};
 
 const DynamicForm: FC<IDynamicFormProps> = ({
   children,
@@ -329,7 +266,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
 
   useEffect(() => {
     if (defaultValueFlag) {
-      if (getDFormType(data) === 'NORMAL') {
+      if (data && data.length) {
         const filter = data.filter(
           (dataItem: any) => dataItem?.defaultValue !== undefined,
         );
@@ -344,18 +281,9 @@ const DynamicForm: FC<IDynamicFormProps> = ({
     form.setFieldsValue(formsValues as Store);
   }, [formsValues]);
 
-  const dFormType = getDFormType(data);
+  // const dFormType = getDFormType(data);
 
-  // 开启条件是开发模式，并且data没有传，或者data传空数组[]
-  // const showAddItem =
-  //   isDev || (nodeEnvIsDev && (!data || (data instanceof Array && data.length === 0)));
-
-  const rederChildren = renderMainList(
-    dFormType,
-    data,
-    allDisabled,
-    autoLineFeed,
-  );
+  const rederChildren = renderListMain(data, allDisabled, autoLineFeed);
   return (
     <>
       <Form

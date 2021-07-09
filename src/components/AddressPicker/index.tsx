@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
 import Field from '../Field';
 import AddressPickerGroup from './AddressPickerGroup';
-import { IAddressPickerProps } from './interface';
+import { IAddressPickerProps, valueProps } from './interface';
 import '../../styles/index.less';
 
-const AddressPicker: FC<IAddressPickerProps> = props => {
+const AddressPicker: FC<IAddressPickerProps> = (props) => {
   const [initValue, setInitValue] = useState<string | undefined>();
 
   const {
@@ -21,7 +21,10 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
 
   const isVertical = positionType === 'vertical';
 
-  const fieldChange = (val: (number | string)[] | undefined, flag: 'change' | 'init') => {
+  const fieldChange = (
+    val: valueProps | undefined,
+    flag: 'change' | 'init',
+  ) => {
     if (flag === 'change' && onChange) onChange(val);
   };
 
@@ -32,10 +35,10 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
           <div className="alitajs-dform-input-title">
             {isVertical && (
               <div className="alitajs-dform-vertical-title">
-                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span className="alitajs-dform-title">
-                  {title}
-                </span>
+                {required && hasStar && (
+                  <span className="alitajs-dform-redStar">*</span>
+                )}
+                <span className="alitajs-dform-title">{title}</span>
                 {subTitle}
               </div>
             )}
@@ -53,7 +56,11 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
               return prevValue !== nextValue;
             }}
           >
-            <AddressPickerGroup {...props} initValue={initValue} onChange={fieldChange} />
+            <AddressPickerGroup
+              {...props}
+              initValue={initValue}
+              onChange={fieldChange}
+            />
           </Field>
         </React.Fragment>
       )}

@@ -4,7 +4,7 @@ import { INomarPickerProps } from './interface';
 import Field from '../Field';
 import '../../styles/index.less';
 
-const NomarPicker: FC<INomarPickerProps> = props => {
+const NomarPicker: FC<INomarPickerProps> = (props) => {
   const [initValue, setInitValue] = useState(undefined);
   const [aliasData, setAliasData] = useState<any[]>([]);
 
@@ -29,7 +29,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
-    const newData = data.map(item => ({
+    const newData = data.map((item: any) => ({
       label: item[label],
       value: item[value],
     }));
@@ -47,10 +47,10 @@ const NomarPicker: FC<INomarPickerProps> = props => {
           <div className="alitajs-dform-input-title">
             {isVertical && (
               <div className="alitajs-dform-vertical-title">
-                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span className="alitajs-dform-title">
-                  {title}
-                </span>
+                {required && hasStar && (
+                  <span className="alitajs-dform-redStar">*</span>
+                )}
+                <span className="alitajs-dform-title">{title}</span>
                 {subTitle}
               </div>
             )}
@@ -63,11 +63,16 @@ const NomarPicker: FC<INomarPickerProps> = props => {
               return prevValue !== nextValue;
             }}
           >
-            <PickerGroup {...props} initValue={initValue} onChange={fieldChange} data={aliasData}>
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+            <PickerGroup
+              {...props}
+              initValue={initValue}
+              onChange={fieldChange}
+              data={aliasData}
+            >
+              {required && hasStar && (
+                <span className="alitajs-dform-redStar">*</span>
+              )}
+              <span className="alitajs-dform-title">{title}</span>
             </PickerGroup>
           </Field>
         </React.Fragment>

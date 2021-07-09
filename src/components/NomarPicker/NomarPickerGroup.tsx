@@ -9,9 +9,9 @@ interface INomarPickerGroupProps extends Omit<INomarPickerProps, 'onChange'> {
   initValue?: string | number;
 }
 
-const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
+const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
   const [visible, setvisible] = useState<boolean>(false);
-  const [pickerLabel, setPickerLabel] = useState<string | number>('');
+  const [pickerLabel, setPickerLabel] = useState<any>('');
   // const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
   const {
     data = [],
@@ -39,7 +39,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
       setPickerLabel('');
       return;
     }
-    const filterList = data.filter(item => item?.value === initValue);
+    const filterList = data.filter((item) => item?.value === initValue);
     if (filterList && filterList.length) {
       setPickerLabel(filterList[0].label);
     } else {
@@ -54,7 +54,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
       //   nowValue = preValue;
       //   setPreValue(undefined);
       // }
-      const filterList = data.filter(item => item?.value === nowValue);
+      const filterList = data.filter((item) => item?.value === nowValue);
       if (filterList && filterList.length) {
         setPickerLabel(filterList[0].label);
         // if (preValue) onChange(nowValue, 'init');
@@ -93,10 +93,10 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
         extra={extra}
         className={className}
       >
-        {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-        <span className="alitajs-dform-title">
-          {title}
-        </span>
+        {required && hasStar && (
+          <span className="alitajs-dform-redStar">*</span>
+        )}
+        <span className="alitajs-dform-title">{title}</span>
       </InputItem>
       <Picker
         title={title}

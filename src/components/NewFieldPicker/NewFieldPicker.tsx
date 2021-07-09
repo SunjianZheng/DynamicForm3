@@ -195,16 +195,6 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
   };
 
   const defaultFailed = (errorInfo: ValidateErrorEntity) => {
-    if (
-      !errorInfo ||
-      !errorInfo.errorFields ||
-      errorInfo.errorFields.length === 0 ||
-      onFinishFailed
-    ) {
-      onFinishFailed(errorInfo);
-
-      return;
-    }
     const scrollToField = (fieldKey: any) => {
       const labelNode = document.getElementById(`aliat-dform-${fieldKey}`);
       if (labelNode) {
@@ -212,9 +202,19 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
       }
     };
     scrollToField(errorInfo.errorFields[0].name[0]);
-    if (onFinishFailed) {
+
+    if (
+      !errorInfo ||
+      !errorInfo.errorFields ||
+      errorInfo.errorFields.length === 0 ||
+      onFinishFailed
+    ) {
       onFinishFailed(errorInfo);
+      return;
     }
+    // if (onFinishFailed) {
+    //   onFinishFailed(errorInfo);
+    // }
   };
 
   return (

@@ -1,10 +1,10 @@
 import React, { FC, useState, ChangeEvent } from 'react';
 import Field from '../Field';
 import FileGroup from './fileGroup';
-import FileIcon from '../../assets/file.png';
 import { INomarFileProps, INomarFileItemProps } from './interface';
+// const FileIcon = require('../../assets/file.png');
 
-const NomarFile: FC<INomarFileProps> = props => {
+const NomarFile: FC<INomarFileProps> = (props) => {
   const [initValue, setInitValue] = useState([]);
 
   const {
@@ -15,26 +15,37 @@ const NomarFile: FC<INomarFileProps> = props => {
     hasStar = true,
     subTitle,
     hidden = false,
-    extra = <img src={FileIcon} alt="" className="alitajs-dform-file-img" />,
+    // extra = <img src={FileIcon} alt="" className="alitajs-dform-file-img" />,
+    extra = <div>123</div>,
     onChange,
     upload,
   } = props;
 
-  const fileIns = (e: ChangeEvent<HTMLInputElement>) => {
+  const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
     if (e.target.files) {
-      const fileList = Object.keys(e.target.files).map(item => e.target.files[item]);
+      const fileList = Object.keys(e.target.files).map(
+        (item) => e.target.files[item],
+      );
       upload(fileList);
     }
   };
 
   const extraContent = () => (
     <React.Fragment>
-      <input type="file" multiple className="alitajs-dform-file-input" onChange={fileIns} />
+      <input
+        type="file"
+        multiple
+        className="alitajs-dform-file-input"
+        onChange={fileIns}
+      />
       <span className="alitajs-dform-file-extra">{extra}</span>
     </React.Fragment>
   );
 
-  const fileChange = (res: INomarFileItemProps[], item: INomarFileItemProps) => {
+  const fileChange = (
+    res: INomarFileItemProps[],
+    item: INomarFileItemProps,
+  ) => {
     if (onChange) onChange(res, item);
   };
 
@@ -45,10 +56,10 @@ const NomarFile: FC<INomarFileProps> = props => {
           <div className="alitajs-dform-file">
             <div className="alitajs-dform-input-title">
               <div className="alitajs-dform-vertical-title">
-                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span className="alitajs-dform-title">
-                  {title}
-                </span>
+                {required && hasStar && (
+                  <span className="alitajs-dform-redStar">*</span>
+                )}
+                <span className="alitajs-dform-title">{title}</span>
                 {subTitle}
               </div>
               <div className="alitajs-dform-extra">{extraContent()}</div>
@@ -61,7 +72,11 @@ const NomarFile: FC<INomarFileProps> = props => {
                 return prevValue !== nextValue;
               }}
             >
-              <FileGroup {...props} initValue={initValue} onChange={fileChange} />
+              <FileGroup
+                {...props}
+                initValue={initValue}
+                onChange={fileChange}
+              />
             </Field>
           </div>
         )}

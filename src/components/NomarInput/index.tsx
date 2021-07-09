@@ -10,7 +10,7 @@ import '../../styles/index.less';
 export interface INomarInputProps extends InputItemPropsType {
   inputType?: InputItemPropsType['type'];
   coverStyle?: React.CSSProperties;
-  title?: string;
+  title: string;
   required?: boolean;
   fieldProps: string;
   rules?: Rule[];
