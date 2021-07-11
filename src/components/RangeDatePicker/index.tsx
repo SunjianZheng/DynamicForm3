@@ -6,7 +6,7 @@ import Field from '../Field';
 import { INomarDatePickerProps } from '../NomarDatePicker';
 import { changeDateFormat } from '../../utils';
 
-import '../../styles/index.less';
+import './index.less';
 
 export interface IRangeDatePickerProps extends INomarDatePickerProps {
   fieldProps2?: string;

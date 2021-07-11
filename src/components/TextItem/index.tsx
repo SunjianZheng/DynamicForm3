@@ -1,9 +1,9 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { ITextItemProps } from './interface';
-import '../../styles/index.less';
+import './index.less';
 
-const TextItem: FC<ITextItemProps> = props => {
+const TextItem: FC<ITextItemProps> = (props) => {
   const [overflowFlag, setOverflowFlag] = useState<boolean>(true); // 展开收起标识
   const [lineHeightFlag, setLineHeightFlag] = useState<boolean>(false); // 文字行数是否超过 maxLength
   const [currentCoverStyle, setCurrentCoverStyle] = useState({});
@@ -69,7 +69,9 @@ const TextItem: FC<ITextItemProps> = props => {
           }}
         >
           <div
-            className={value ? 'alitajs-dform-text-content' : 'alitajs-dform-placeholder'}
+            className={
+              value ? 'alitajs-dform-text-content' : 'alitajs-dform-placeholder'
+            }
             onClick={() => {
               inputItemClick();
             }}
@@ -84,7 +86,10 @@ const TextItem: FC<ITextItemProps> = props => {
               style={{
                 textAlign: isVertical ? 'left' : 'right',
                 WebkitLineClamp: maxLine,
-                display: maxLine && overflowFlag && lineHeightFlag ? '-webkit-box' : '',
+                display:
+                  maxLine && overflowFlag && lineHeightFlag
+                    ? '-webkit-box'
+                    : '',
                 ...currentCoverStyle,
               }}
             >

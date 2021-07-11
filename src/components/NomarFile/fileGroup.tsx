@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { INomarFileProps, INomarFileItemProps } from './interface';
-// const CloseIcon = require('../../assets/close.png');
-import '../../styles/index.less';
+import { SVG_FILE } from '../../assets/svg';
+import './index.less';
 
 interface IFileGroupProps extends INomarFileProps {
   initValue: INomarFileItemProps[];
@@ -37,14 +37,14 @@ const FileGroup: FC<IFileGroupProps> = (props) => {
           >
             {item[alias.title || 'title']}
           </span>
-          {/* <img
+          <img
             onClick={() => {
               del(index);
             }}
-            src={CloseIcon}
+            src={SVG_FILE.close}
             alt=""
             className="alitajs-dform-close"
-          /> */}
+          />
         </div>
       ))}
     </div>

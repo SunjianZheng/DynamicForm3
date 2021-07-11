@@ -5,7 +5,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import Field from '../Field';
 
-import '../../styles/index.less';
+import './index.less';
 
 export interface INomarInputProps extends InputItemPropsType {
   inputType?: InputItemPropsType['type'];

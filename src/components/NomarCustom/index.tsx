@@ -3,7 +3,7 @@ import { List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import Field from '../Field';
-import '../../styles/index.less';
+import './index.less';
 
 interface INomarCustomPorps {
   fieldProps: string;
@@ -19,7 +19,7 @@ interface INomarCustomPorps {
   hidden?: boolean;
 }
 
-const NomarCustom: FC<INomarCustomPorps> = props => {
+const NomarCustom: FC<INomarCustomPorps> = (props) => {
   const [initValue, setInitValue] = useState<any>();
   const {
     fieldProps,
@@ -55,10 +55,10 @@ const NomarCustom: FC<INomarCustomPorps> = props => {
         <React.Fragment>
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+              {required && hasStar && (
+                <span className="alitajs-dform-redStar">*</span>
+              )}
+              <span className="alitajs-dform-title">{title}</span>
               {subTitle}
             </div>
           )}
@@ -69,10 +69,10 @@ const NomarCustom: FC<INomarCustomPorps> = props => {
             })}
           >
             <List.Item key={fieldProps} extra={dom()}>
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+              {required && hasStar && (
+                <span className="alitajs-dform-redStar">*</span>
+              )}
+              <span className="alitajs-dform-title">{title}</span>
             </List.Item>
           </div>
         </React.Fragment>

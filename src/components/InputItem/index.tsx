@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
 import { IInputItemProps } from './interface';
-import '../../styles/index.less';
+import './index.less';
 
-const InputItem: FC<IInputItemProps> = props => {
+const InputItem: FC<IInputItemProps> = (props) => {
   const {
     isVertical = false,
     value = '',
@@ -15,7 +15,7 @@ const InputItem: FC<IInputItemProps> = props => {
     coverStyle = {},
     disabled = false,
     extra = '',
-    className = ''
+    className = '',
   } = props;
 
   let inputRef: HTMLInputElement | null;
@@ -53,7 +53,7 @@ const InputItem: FC<IInputItemProps> = props => {
           <input
             type="text"
             // eslint-disable-next-line no-return-assign
-            ref={el => (inputRef = el)}
+            ref={(el) => (inputRef = el)}
             value={value}
             readOnly={readOnly}
             style={{
@@ -64,7 +64,7 @@ const InputItem: FC<IInputItemProps> = props => {
             onFocus={() => {
               if (inputRef) inputRef.blur();
             }}
-            onChange={e => {
+            onChange={(e) => {
               inputItemChange(e);
             }}
             className={classnames({

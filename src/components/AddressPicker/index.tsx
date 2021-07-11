@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import Field from '../Field';
 import AddressPickerGroup from './AddressPickerGroup';
 import { IAddressPickerProps, valueProps } from './interface';
-import '../../styles/index.less';
+import './index.less';
 
 const AddressPicker: FC<IAddressPickerProps> = (props) => {
   const [initValue, setInitValue] = useState<string | undefined>();

@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
 import Field from '../Field';
 import { IAliasProps } from '../../DynamicForm';
-import '../../styles/index.less';
+import './index.less';
 
 interface IDataItem {
   [key: string]: string | number;

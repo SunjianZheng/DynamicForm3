@@ -3,9 +3,9 @@ import React, { FC, useState } from 'react';
 import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../Field';
-import '../../styles/index.less';
+import './index.less';
 
-const NomarImagePicker: FC<INomarImagePickerProps> = props => {
+const NomarImagePicker: FC<INomarImagePickerProps> = (props) => {
   const [initValue, setInitValue] = useState([]);
   const {
     coverStyle,
@@ -22,7 +22,11 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
     ...otherProps
   } = props;
 
-  const imageChange = (files: ImageFile[], operationType: string, index: number | undefined) => {
+  const imageChange = (
+    files: ImageFile[],
+    operationType: string,
+    index: number | undefined,
+  ) => {
     if (onChange) onChange(files, operationType, index);
   };
 
@@ -32,10 +36,10 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
         <div className="alitajs-dform-image-picker">
           <div className="alitajs-dform-input-title">
             <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+              {required && hasStar && (
+                <span className="alitajs-dform-redStar">*</span>
+              )}
+              <span className="alitajs-dform-title">{title}</span>
               {subTitle}
             </div>
             {extra !== '' && <div className="alitajs-dform-extra">{extra}</div>}

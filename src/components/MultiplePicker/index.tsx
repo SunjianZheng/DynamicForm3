@@ -3,7 +3,7 @@ import MultiplePickerGroup from './multiplePickerGroup';
 import { IMultiplePickerProps } from './interface';
 import Field from '../Field';
 import Hidden from '../Hidden';
-import '../../styles/index.less';
+import './index.less';
 
 const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
   const [initValue, setInitValue] = useState<string | undefined>();

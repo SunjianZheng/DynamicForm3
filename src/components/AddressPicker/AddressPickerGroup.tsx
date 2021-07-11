@@ -3,7 +3,7 @@ import { Modal, List } from 'antd-mobile';
 import classnames from 'classnames';
 import { IAddressPickerProps, valueProps } from './interface';
 import { InputItem } from '..';
-import '../../styles/index.less';
+import './index.less';
 
 const { Item } = List;
 
