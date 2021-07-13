@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { Modal, List } from 'antd-mobile';
 import classnames from 'classnames';
 import { IMultiplePickerProps, IDataItem } from './interface';
-import { InputItem } from '..';
+import { TextItem } from '..';
 import './index.less';
 
 const { Item } = List;
@@ -109,7 +109,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
 
   return (
     <>
-      <InputItem
+      <TextItem
         isVertical={isVertical}
         value={multipleLabel}
         placeholder={placeholder}
@@ -120,10 +120,9 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
           if (onClick) onClick();
           openMoal();
         }}
-        readOnly
       >
         {children}
-      </InputItem>
+      </TextItem>
       <Modal
         popup
         visible={modalFlag}

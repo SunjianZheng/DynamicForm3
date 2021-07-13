@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
-import { InputItem } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
+import { StringAndUdfEvent, ClickEvent } from '@/PropsType';
+import { InputItem } from '..';
 import Field from '../Field';
+import { allPrefixCls } from '../../const/index';
 
 import './index.less';
 
@@ -14,7 +16,7 @@ export interface INomarInputProps extends InputItemPropsType {
   required?: boolean;
   fieldProps: string;
   rules?: Rule[];
-  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (e: ClickEvent) => void;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
   subTitle?: string | React.ReactNode;
@@ -38,6 +40,7 @@ const NomarInput: FC<INomarInputProps> = (props) => {
     onBlur,
     editable = true,
     className = '',
+    disabled = false,
     ...otherProps
   } = props;
 
@@ -49,61 +52,58 @@ const NomarInput: FC<INomarInputProps> = (props) => {
   };
 
   return (
-    <>
+    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
       {!hidden && (
         <React.Fragment>
-          <div className="alitajs-dform-input-title">
-            {isVertical && (
-              <div className="alitajs-dform-vertical-title">
-                {required && hasStar && (
-                  <span className="alitajs-dform-redStar">*</span>
-                )}
-                <span className="alitajs-dform-title">{title}</span>
-                {subTitle}
-              </div>
-            )}
-            {extra !== '' && isVertical && (
-              <div className="alitajs-dform-extra">{extra}</div>
-            )}
-          </div>
-
-          <div
-            className={classnames({
-              [`alitajs-dform${isVertical ? '-vertical' : ''}-input`]: true,
-              'alitajs-dform-disabled': !editable,
-            })}
-          >
-            <Field
-              name={fieldProps}
-              rules={rules || [{ required, message: `请输入${title}` }]}
+          {isVertical && (
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
             >
-              <InputItem
-                {...otherProps}
-                extra={isVertical ? '' : extra}
-                type={inputType}
-                editable={editable}
-                className={classnames({
-                  'alitajs-dform-disabled': !editable,
-                  [className]: className,
-                })}
-                style={{
-                  textAlign: isVertical ? 'left' : 'right',
-                  ...coverStyle,
-                }}
-                onBlur={(val) => {
-                  inputOnBlur(val);
-                }}
-              >
+              {required && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div>{title}</div>
+              {subTitle}
+            </div>
+          )}
+          {extra !== '' && isVertical && (
+            <div className={`${allPrefixCls}-extra`}>{extra}</div>
+          )}
+
+          <Field
+            name={fieldProps}
+            rules={rules || [{ required, message: `请输入${title}` }]}
+          >
+            <InputItem
+              {...otherProps}
+              extra={isVertical ? '' : extra}
+              type={inputType}
+              editable={editable}
+              disabled={disabled}
+              className={className}
+              coverStyle={{
+                textAlign: isVertical ? 'left' : 'right',
+                ...coverStyle,
+              }}
+              onBlur={(val: StringAndUdfEvent) => {
+                inputOnBlur(val);
+              }}
+              isVertical={isVertical}
+            >
+              <div className={`${allPrefixCls}-title`}>
                 {required && hasStar && (
-                  <span className="alitajs-dform-redStar">*</span>
+                  <div className={`${allPrefixCls}-redStar`}>*</div>
                 )}
-                <span className="alitajs-dform-title">{title}</span>
-              </InputItem>
-            </Field>
-          </div>
+                <div>{title}</div>
+              </div>
+            </InputItem>
+          </Field>
         </React.Fragment>
       )}
-    </>
+    </div>
   );
 };
 

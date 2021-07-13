@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect, useRef } from 'react';
 import { Modal, List } from 'antd-mobile';
 import classnames from 'classnames';
 import { IAddressPickerProps, valueProps } from './interface';
-import { InputItem } from '..';
+import { TextItem } from '..';
 import './index.less';
 
 const { Item } = List;
@@ -230,25 +230,21 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
 
   return (
     <>
-      <InputItem
+      <TextItem
         isVertical={isVertical}
         value={inputLabel}
         placeholder={placeholder}
-        readOnly
         disabled={disabled}
         coverStyle={coverStyle}
         className={className}
         labelNumber={labelNumber}
         onClick={inputClick}
-        onChange={(e) => {
-          setInputLabel(e.target.value);
-        }}
       >
         {required && hasStar && (
           <span className="alitajs-dform-redStar">*</span>
         )}
         <span className="alitajs-dform-title">{title}</span>
-      </InputItem>
+      </TextItem>
       <Modal
         popup
         visible={modalFlag}

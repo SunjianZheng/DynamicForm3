@@ -1,28 +1,24 @@
 @import '../../styles/index.less';
 
-.@{prefixCls}-input-item {
+.alitajs-dform-input-item {
+  height: 44 * @hd;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 
-  &-value {
+  .alitajs-dform-input-value {
     font-size: @alita-dform-value-font-size;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-  }
 
-  &-text {
-    width: 100%;
-    border: 0 * @hd;
-    color: @alita-dform-value-color;
-    background-color: transparent;
-    font-size: @alita-dform-value-font-size;
-
-    & input::placeholder {
-      color: @alita-dform-placeholder;
+    .alitajs-dform-input-text {
+      width: 100%;
+      border: 0 * @hd;
+      color: @alita-dform-value-color;
+      background-color: transparent;
     }
   }
 }

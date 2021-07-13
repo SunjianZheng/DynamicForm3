@@ -44,7 +44,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
     }
   }, [value, coverStyle]);
 
-  const labelCls = classnames('am-input-label', 'alitajs-dform-item', {
+  const labelCls = classnames('am-input-label', 'alitajs-dform-label-item', {
     'am-input-label-2': labelNumber === 2,
     'am-input-label-3': labelNumber === 3,
     'am-input-label-4': labelNumber === 4,

@@ -1,6 +1,7 @@
 import DynamicForm from './DynamicForm';
 import Field from './components/Field';
 import Form from 'rc-field-form';
+import './index.less';
 
 export * from './DynamicForm';
 export * from './components';

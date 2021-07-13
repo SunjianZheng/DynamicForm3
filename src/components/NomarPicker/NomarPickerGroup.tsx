@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Picker } from 'antd-mobile';
 import { INomarPickerProps } from './interface';
-import { InputItem } from '..';
+import { TextItem } from '..';
 import '../../styles/index.less';
 
 interface INomarPickerGroupProps extends Omit<INomarPickerProps, 'onChange'> {
@@ -81,13 +81,12 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
 
   return (
     <>
-      <InputItem
+      <TextItem
         isVertical={isVertical}
         value={`${pickerLabel}`}
         placeholder={placeholder}
         labelNumber={labelNumber}
         coverStyle={coverStyle}
-        readOnly
         onClick={fieldClick}
         disabled={disabled}
         extra={extra}
@@ -97,7 +96,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
           <span className="alitajs-dform-redStar">*</span>
         )}
         <span className="alitajs-dform-title">{title}</span>
-      </InputItem>
+      </TextItem>
       <Picker
         title={title}
         visible={visible && data.length > 0}
