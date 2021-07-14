@@ -7,8 +7,6 @@ import { InputItem } from '..';
 import Field from '../Field';
 import { allPrefixCls } from '../../const/index';
 
-import './index.less';
-
 export interface INomarInputProps extends InputItemPropsType {
   inputType?: InputItemPropsType['type'];
   coverStyle?: React.CSSProperties;
@@ -67,10 +65,10 @@ const NomarInput: FC<INomarInputProps> = (props) => {
               )}
               <div>{title}</div>
               {subTitle}
+              {extra !== '' && isVertical && (
+                <div className={`${allPrefixCls}-extra`}>{extra}</div>
+              )}
             </div>
-          )}
-          {extra !== '' && isVertical && (
-            <div className={`${allPrefixCls}-extra`}>{extra}</div>
           )}
 
           <Field

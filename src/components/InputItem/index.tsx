@@ -46,9 +46,6 @@ const InputItem: FC<IInputItemProps> = (props) => {
       {!isVertical && <div className={labelCls}>{props.children}</div>}
       <div
         className={`${prefixCls}-value`}
-        style={{
-          flex: '1',
-        }}
         onClick={(e: ClickEvent) => {
           if (disabled) return;
           inputItemClick(e);

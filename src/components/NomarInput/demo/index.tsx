@@ -10,6 +10,9 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
 } from '@alitajs/dform';
+import PositionIcon from '../../../assets/position_ico.png';
+import PhotoIcon from '../../../assets/photo.png';
+import PwdIcon from '../../../assets/look.png';
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -24,13 +27,23 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const extraImg = () => <div></div>;
+  const extraImg = () => <img src={PositionIcon} style={{ width: '0.5rem' }} />;
 
-  const photoImg = () => <div></div>;
+  const photoImg = () => (
+    <img src={PhotoIcon} style={{ width: '1rem', height: '0.5rem' }} />
+  );
 
   const subTitle = () => <div style={{ color: 'red' }}>此为必填项(副标题)</div>;
 
-  const pwdImg = () => <div></div>;
+  const pwdImg = () => (
+    <img
+      style={{ width: '0.6rem' }}
+      src={PwdIcon}
+      onClick={() => {
+        setPwdInputType(!pwdInputType);
+      }}
+    />
+  );
 
   const formsData = [
     {

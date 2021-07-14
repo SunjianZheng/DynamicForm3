@@ -1,6 +1,7 @@
 @import '../../styles/index.less';
 
 .@{prefixCls}-input-item {
+  height: @alita-dform-height;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -12,6 +13,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    flex: 1;
   }
 
   &-text {
@@ -20,9 +22,9 @@
     color: @alita-dform-value-color;
     background-color: transparent;
     font-size: @alita-dform-value-font-size;
+  }
 
-    & input::placeholder {
-      color: @alita-dform-placeholder;
-    }
+  &-value input::placeholder {
+    color: @alita-dform-placeholder !important;
   }
 }

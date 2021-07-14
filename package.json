@@ -1,6 +1,6 @@
 {
   "private": false,
-  "name": "@dlijs/dform",
+  "name": "@alitajs/dform",
   "version": "0.0.2",
   "scripts": {
     "start": "dumi dev",
@@ -14,8 +14,8 @@
     "test:coverage": "umi-test --coverage",
     "publish":"npm publish --access public"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "typings": "dist/index.d.ts",
   "gitHooks": {
     "pre-commit": "lint-staged",
