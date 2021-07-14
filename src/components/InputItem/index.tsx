@@ -1,7 +1,11 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
+import { ClickEvent, StringEvent } from '@/PropsType';
 import { IInputItemProps } from './interface';
+import { allPrefixCls } from '../../const/index';
 import './index.less';
+
+const prefixCls = 'alitajs-dform-input-item';
 
 const InputItem: FC<IInputItemProps> = (props) => {
   const {
@@ -9,73 +13,71 @@ const InputItem: FC<IInputItemProps> = (props) => {
     value = '',
     placeholder = '',
     onClick,
-    readOnly = false,
+    editable = true,
     onChange,
     labelNumber = 5,
     coverStyle = {},
     disabled = false,
     extra = '',
     className = '',
+    onBlur,
+    onFocus,
   } = props;
 
-  let inputRef: HTMLInputElement | null;
-
-  const labelCls = classnames('am-input-label', 'alitajs-dform-item', {
-    'am-input-label-2': labelNumber === 2,
-    'am-input-label-3': labelNumber === 3,
-    'am-input-label-4': labelNumber === 4,
-    'am-input-label-5': labelNumber === 5,
-    'am-input-label-6': labelNumber === 6,
-    'am-input-label-7': labelNumber === 7,
+  const labelCls = classnames({
+    [`${allPrefixCls}-input-label-0`]: labelNumber === 0,
+    [`${allPrefixCls}-input-label-2`]: labelNumber === 2,
+    [`${allPrefixCls}-input-label-3`]: labelNumber === 3,
+    [`${allPrefixCls}-input-label-4`]: labelNumber === 4,
+    [`${allPrefixCls}-input-label-5`]: labelNumber === 5,
+    [`${allPrefixCls}-input-label-6`]: labelNumber === 6,
+    [`${allPrefixCls}-input-label-7`]: labelNumber === 7,
   });
 
-  const inputItemClick = () => {
-    if (onClick) onClick();
+  const inputItemClick = (e: ClickEvent) => {
+    if (onClick) onClick(e);
   };
-  const inputItemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const inputItemChange = (e: StringEvent) => {
     if (onChange) onChange(e);
   };
 
   return (
-    <div className="am-list-item am-list-item-middle alitajs-dform-input-item">
-      <div className="am-list-line">
-        {!isVertical && <div className={labelCls}>{props.children}</div>}
-        <div
-          className="alitajs-dform-input-value"
+    <div className={prefixCls}>
+      {!isVertical && <div className={labelCls}>{props.children}</div>}
+      <div
+        className={`${prefixCls}-value`}
+        onClick={(e: ClickEvent) => {
+          if (disabled) return;
+          inputItemClick(e);
+        }}
+      >
+        <input
+          type="text"
+          value={value}
+          readOnly={!editable || disabled}
           style={{
-            // width: isVertical ? '100%' : '60%',
-            flex: '1',
+            textAlign: isVertical ? 'left' : 'right',
+            ...coverStyle,
           }}
-          onClick={() => {
-            inputItemClick();
+          onFocus={(e: any) => {
+            if (disabled) return;
+            if (onFocus) onFocus(e.target.value);
           }}
-        >
-          <input
-            type="text"
-            // eslint-disable-next-line no-return-assign
-            ref={(el) => (inputRef = el)}
-            value={value}
-            readOnly={readOnly}
-            style={{
-              textAlign: isVertical ? 'left' : 'right',
-              ...coverStyle,
-            }}
-            unselectable="on"
-            onFocus={() => {
-              if (inputRef) inputRef.blur();
-            }}
-            onChange={(e) => {
-              inputItemChange(e);
-            }}
-            className={classnames({
-              'alitajs-dform-input-text': true,
-              'alitajs-dform-disabled': disabled,
-              [className]: className,
-            })}
-            placeholder={placeholder}
-          />
-          {extra || <div className="am-list-arrow am-list-arrow-horizontal" />}
-        </div>
+          onBlur={(e: any) => {
+            if (disabled) return;
+            if (onBlur) onBlur(e.target.value);
+          }}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            inputItemChange(e.target.value);
+          }}
+          className={classnames({
+            [`${prefixCls}-text`]: true,
+            'alitajs-dform-disabled': !editable || disabled,
+            [className]: className,
+          })}
+          placeholder={placeholder}
+        />
+        {extra}
       </div>
     </div>
   );

@@ -152,14 +152,10 @@ export const getFormItem = (formItem: IFormItemProps, allDisabled: boolean) => {
   } = formItem;
   const FormItemComponent = FormItemType[formItem.type];
   return (
-    <React.Fragment>
+    <div key={formItem.fieldProps}>
       {renderHeader}
-      <FormItemComponent
-        {...otherProps}
-        key={formItem.fieldProps}
-        disabled={disabled}
-      />
-    </React.Fragment>
+      <FormItemComponent {...otherProps} disabled={disabled} />
+    </div>
   );
 };
 
@@ -241,11 +237,9 @@ const renderListMain = (
   autoLineFeed: boolean,
 ) => (
   <>
-    <List>
-      {changeData(formData as IFormItemProps[], autoLineFeed).map((item) =>
-        getFormItem(item, allDisabled),
-      )}
-    </List>
+    {changeData(formData as IFormItemProps[], autoLineFeed).map((item) =>
+      getFormItem(item, allDisabled),
+    )}
   </>
 );
 

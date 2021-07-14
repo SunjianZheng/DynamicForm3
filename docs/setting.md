@@ -31,8 +31,8 @@ theme: {
 | ------------------------------- | ---------------------------------------------------------------- | --------- |
 | `@alita-dform-title-font-size`  | 标题大小                                                         | 34        |
 | `@alita-dform-title-color`      | 标题颜色                                                         | `blue`    |
-| `@alita-dform-select-font-size` | 选中项和输入框的值大小                                           | 34        |
-| `@alita-dform-select-color`     | 选中项和输入框的值颜色                                           | `blue`    |
+| `@alita-dform-value-font-size`  | 选中项和输入框的值大小                                           | 34        |
+| `@alita-dform-value-color`      | 选中项和输入框的值颜色                                           | `blue`    |
 | `@alita-dform-placeholder`      | `placeholder` 的颜色                                             | `#888`    |
 | `@color-text-disabled`          | 不可编辑的文字颜色                                               | `#000`    |
 | `@alita-dform-radio-color`      | CoverRadio, Radio, CheckBox, MultiplePicker 选中时的颜色         | `#108ee9` |

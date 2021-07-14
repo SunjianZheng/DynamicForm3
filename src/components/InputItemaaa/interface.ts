@@ -4,16 +4,15 @@ export interface IInputItemProps {
   isVertical?: boolean;
   value?: string;
   placeholder?: string;
-  editable?: boolean;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   labelNumber?: number;
   onChange?: (e: StringEvent) => void;
   coverStyle?: React.CSSProperties;
   disabled?: boolean;
+  editable?: boolean;
   extra?: string | React.ReactNode;
   className?: string;
   onBlur?: InputEventHandler;
-  onFocus?: InputEventHandler;
   type?:
     | 'text'
     | 'bankCard'

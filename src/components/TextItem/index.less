@@ -1,10 +1,12 @@
 @import '../../styles/index.less';
 
-.alitajs-dform-text-item {
-  height: auto;
+@textPrefixCls: alitajs-dform-text-item;
+
+.@{textPrefixCls} {
+  height: @alita-dform-height;
   display: flex;
   flex-direction: row;
-  // align-items: center;
+  align-items: center;
   justify-content: center;
 
   // .alitajs-dform-text-tltle {
@@ -13,32 +15,43 @@
   //   // width: 40%;
   // }
 
-  .alitajs-dform-text-value {
-    font-size: @alita-dform-select-font-size;
+  .text-item {
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .@{prefixCls}-placeholder {
+    .@{textPrefixCls}-text {
+      color: @alita-dform-placeholder;
+      .text-item();
+    }
+  }
+
+  &-content {
+    width: 100%;
+    border: 0 * @hd;
+    display: flex;
+    flex-direction: column;
+    .@{textPrefixCls}-text {
+      color: @alita-dform-value-color;
+      .text-item();
+    }
+  }
+
+  &-value {
+    font-size: @alita-dform-value-font-size;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    flex: 1;
+  }
 
-    .alitajs-dform-text-content {
-      width: 100%;
-      border: 0 * @hd;
-      display: flex;
-      flex-direction: column;
-
-      .alitajs-dform-text-text {
-        color: @alita-dform-select-color;
-        word-break: break-all;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .alitajs-dform-text-overflow {
-        text-align: right;
-        color: @alita-dform-radio-color;
-      }
-    }
+  &-overflow {
+    text-align: right;
+    color: @alita-dform-radio-color;
   }
 
   .am-input-extra {

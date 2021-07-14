@@ -1,13 +1,7 @@
 @import '~antd-mobile/lib/style/themes/default.less';
+@import '../index.less';
 
-@alita-dform-title-font-size: @input-font-size; // 标题大小
-@alita-dform-title-color: #000; // 标题颜色
-@alita-dform-select-color: #000; // 内容颜色
-@alita-dform-select-font-size: @input-font-size; // 内容大小
-@alita-dform-radio-color: #108ee9; // 按钮样式
-@alita-dform-radio-font-color: #fff; // 按钮文字样式
-@alita-dform-placeholder: #888; // placeholder 样式
-@color-text-disabled: #000; // 不可编辑样式
+@prefixCls: alitajs-dform;
 
 @keyframes colorful {
   0% {
@@ -19,33 +13,82 @@
   }
 }
 
+.@{prefixCls} {
+  .alitajs-dform-item-content {
+    padding-right: 12 * @hd;
+    margin-left: 12 * @hd;
+    border-bottom: 1 * @hd solid #ddd;
+  }
+
+  .alitajs-dform-title-content {
+    font-size: @alita-dform-title-font-size !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &-item {
+    height: @alita-dform-height;
+    .alitajs-dform-item-content();
+  }
+
+  &-vertical-item {
+    .alitajs-dform-item-content();
+    height: auto;
+  }
+
+  &-title {
+    color: @alita-dform-title-color;
+    .alitajs-dform-title-content();
+  }
+  &-vertical-title {
+    padding-top: 10 * @hd;
+  }
+
+  &-redStar {
+    // margin-right: 3 * @hd;
+    color: rgba(255, 72, 72, 1);
+    font-size: @alita-dform-title-font-size !important;
+  }
+
+  &-input-label {
+    &-0 {
+      width: 0px;
+    }
+    &-2 {
+      width: 2 * @input-label-width;
+    }
+    &-3 {
+      width: 3 * @input-label-width;
+    }
+    &-4 {
+      width: 4 * @input-label-width;
+    }
+    &-5 {
+      width: 5 * @input-label-width;
+    }
+    &-6 {
+      width: 6 * @input-label-width;
+    }
+    &-7 {
+      width: 7 * @input-label-width;
+    }
+  }
+
+  &-placeholder {
+    // height: @alita-dform-height;
+    width: 100%;
+  }
+
+  &-value-content {
+    // height: @alita-dform-height;
+    width: 100%;
+  }
+}
+
 .alitajs-dform-hide {
   height: 0px;
   overflow: hidden;
-}
-
-.alitajs-dform-title-content {
-  font-size: @alita-dform-title-font-size !important;
-}
-
-.alitajs-dform-item {
-  font-size: @alita-dform-select-font-size !important;
-  color: @alita-dform-select-color;
-}
-
-.alitajs-dform-title {
-  color: @alita-dform-title-color;
-  .alitajs-dform-title-content();
-}
-
-.alitajs-dform-vertical-title {
-  margin-bottom: 0;
-  padding-top: 10 * @hd;
-  padding-left: 15 * @hd;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
 }
 
 .alitajs-dform-line {
@@ -60,76 +103,19 @@
   pointer-events: none;
 }
 
-.alitajs-dform-placeholder {
-  font-size: @alita-dform-select-font-size;
-  color: @alita-dform-placeholder;
-  width: 100%;
-
-  .am-input-control input::placeholder {
-    // 自定义样式
-    font-size: @alita-dform-select-font-size;
-    color: @alita-dform-placeholder !important;
-  }
-
-  .am-textarea-control textarea::placeholder {
-    // 自定义样式
-    font-size: @alita-dform-select-font-size;
-    color: @alita-dform-placeholder;
-  }
-
-  .am-list-item .am-list-line .am-list-extra {
-    font-size: @alita-dform-select-font-size !important;
-    color: @alita-dform-placeholder;
-  }
-
-  .alitajs-dform-input-value input::placeholder {
-    font-size: @alita-dform-select-font-size;
-    color: @alita-dform-placeholder !important;
-  }
-}
-
-.alitajs-dform-value-content {
-  .alitajs-dform-disabled {
-    color: @color-text-disabled !important;
-  }
-
-  .am-list-item .am-list-line .am-list-extra {
-    color: @alita-dform-select-color;
-    font-size: @alita-dform-select-font-size !important;
-  }
-
-  .am-input-control {
-    input {
-      color: @alita-dform-select-color;
-      font-size: @alita-dform-select-font-size;
-    }
-  }
-
-  .am-textarea-control {
-    textarea {
-      color: @alita-dform-select-color;
-      font-size: @alita-dform-select-font-size;
-    }
-  }
-
-  .alitajs-dform-input-value input::placeholder {
-    font-size: @alita-dform-select-font-size;
-    color: @alita-dform-placeholder !important;
-  }
-}
-
 .alitajs-dform-disabled {
+  color: @color-text-disabled !important;
   .am-input-control {
     input {
       color: @color-text-disabled !important;
-      font-size: @alita-dform-select-font-size !important;
+      font-size: @alita-dform-value-font-size !important;
     }
   }
 
   .am-textarea-control {
     textarea {
       color: @color-text-disabled !important;
-      font-size: @alita-dform-select-font-size !important;
+      font-size: @alita-dform-value-font-size !important;
     }
   }
 
@@ -143,14 +129,6 @@
   .alitajs-dform-radio-inner-button {
     background-color: @color-text-disabled !important;
   }
-}
-
-.alitajs-dform-redStar {
-  width: 7 * @hd;
-  height: 25 * @hd;
-  margin-right: 3 * @hd;
-  color: rgba(255, 72, 72, 1);
-  .alitajs-dform-title-content();
 }
 
 .alitajs-dform-input-title {
@@ -174,9 +152,9 @@
     border-radius: 3 * @hd;
   }
 
-  .am-textarea-label {
-    .alitajs-dform-title();
-  }
+  // .am-textarea-label {
+  //   .alitajs-dform-title();
+  // }
 
   .am-list-item {
     border-bottom: 0.5 * @hd solid #ddd !important;
@@ -191,6 +169,10 @@
 
 .alitajs-dform-extra {
   position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 
   .alitajs-dform-file-input {
     position: absolute;
