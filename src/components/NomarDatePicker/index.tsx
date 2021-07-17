@@ -41,7 +41,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = (props) => {
   const isVertical = positionType === 'vertical';
 
   return (
-    <>
+    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
       {!hidden && (
         <React.Fragment>
           {isVertical && (
@@ -90,7 +90,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = (props) => {
           </div>
         </React.Fragment>
       )}
-    </>
+    </div>
   );
 };
 

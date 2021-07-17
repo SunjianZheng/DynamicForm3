@@ -24,6 +24,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
     disabled,
     fieldProps,
     className = '',
+    arrow = true,
   } = props;
 
   useEffect(() => {
@@ -104,6 +105,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
           )}
         </div>
         {!isVertical && <div className="am-input-extra">{extra}</div>}
+        {arrow && <div className={`${allPrefixCls}-arrow-horizontal`} />}
       </div>
     </div>
   );

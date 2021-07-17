@@ -14,6 +14,8 @@ export interface IInputItemProps {
   className?: string;
   onBlur?: InputEventHandler;
   onFocus?: InputEventHandler;
+  clear?: boolean;
+  maxLength?: number;
   type?:
     | 'text'
     | 'bankCard'

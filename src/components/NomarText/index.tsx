@@ -83,6 +83,7 @@ const NomarText: FC<INomarTextProps> = (props) => {
               maxLine={maxLine}
               fieldProps={fieldProps}
               className={className}
+              arrow={false}
             >
               <div className={`${allPrefixCls}-title`}>
                 {required && hasStar && (

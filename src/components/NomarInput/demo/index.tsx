@@ -52,7 +52,7 @@ const Page: FC = () => {
       required: true,
       placeholder: '输入项居左',
       title: '用户名',
-      inputType: 'text',
+      inputType: 'bankCard',
       clear: true,
       subTitle: subTitle(),
       coverStyle: {
@@ -65,8 +65,9 @@ const Page: FC = () => {
       required: true,
       placeholder: '请输入',
       title: '年龄',
-      editable: false,
+      // editable: false,
       inputType: 'text',
+      clear: true,
     },
     {
       type: 'area',
