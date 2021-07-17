@@ -2,7 +2,8 @@ import React, { FC, useState, ChangeEvent } from 'react';
 import Field from '../Field';
 import FileGroup from './fileGroup';
 import { INomarFileProps, INomarFileItemProps } from './interface';
-// const FileIcon = require('../../assets/file.png');
+import { allPrefixCls } from '../../const/index';
+import FileIcon from '../../assets/file.png';
 
 const NomarFile: FC<INomarFileProps> = (props) => {
   const [initValue, setInitValue] = useState([]);
@@ -15,8 +16,8 @@ const NomarFile: FC<INomarFileProps> = (props) => {
     hasStar = true,
     subTitle,
     hidden = false,
-    // extra = <img src={FileIcon} alt="" className="alitajs-dform-file-img" />,
-    extra = <div>123</div>,
+    extra = <img src={FileIcon} alt="" className="alitajs-dform-file-img" />,
+    // extra = <div>123</div>,
     onChange,
     upload,
   } = props;
@@ -50,20 +51,19 @@ const NomarFile: FC<INomarFileProps> = (props) => {
   };
 
   return (
-    <>
+    <div className={`${allPrefixCls}-item`}>
       <React.Fragment>
         {!hidden && (
           <div className="alitajs-dform-file">
-            <div className="alitajs-dform-input-title">
-              <div className="alitajs-dform-vertical-title">
-                {required && hasStar && (
-                  <span className="alitajs-dform-redStar">*</span>
-                )}
-                <span className="alitajs-dform-title">{title}</span>
-                {subTitle}
-              </div>
+            <div className={`${allPrefixCls}-title`}>
+              {required && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div>{title}</div>
+              {subTitle}
               <div className="alitajs-dform-extra">{extraContent()}</div>
             </div>
+
             <Field
               name={fieldProps}
               rules={rules || [{ required, message: `请选择${title}` }]}
@@ -81,7 +81,7 @@ const NomarFile: FC<INomarFileProps> = (props) => {
           </div>
         )}
       </React.Fragment>
-    </>
+    </div>
   );
 };
 

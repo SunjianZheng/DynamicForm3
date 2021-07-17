@@ -3,6 +3,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
 import { IAliasProps } from '../../DynamicForm';
+import { allPrefixCls } from '../../const/index';
 import './index.less';
 
 interface INomarCheckBoxProps {
@@ -64,15 +65,14 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
   };
 
   return (
-    <>
+    <div className={`${allPrefixCls}-item`}>
       {!hidden && (
         <div className="alitajs-dform-check-box">
-          <div className="alitajs-dform-vertical-title">
+          <div className={`${allPrefixCls}-title`}>
             {required && hasStar && (
-              <span className="alitajs-dform-redStar">*</span>
+              <div className={`${allPrefixCls}-redStar`}>*</div>
             )}
-            <span className="alitajs-dform-title">{title}</span>
-            {subTitle}
+            <div>{title}</div>
           </div>
           <Field
             name={fieldProps}
@@ -100,7 +100,7 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
           </Field>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

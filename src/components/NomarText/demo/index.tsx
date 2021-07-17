@@ -104,7 +104,8 @@ const Page: FC = () => {
 
   const formsValues = {
     userAge: '这里只读不可编辑',
-    username5: 'disabled 为 true, 则 onClick 失效',
+    username5:
+      'disabled 为 true, 则 onClick 失效啊不森那是假的喀纳斯接地气呢你千万记恩情为敬勤捏你见你你去问就你去问i饿去呢我i你问i =内外交困的去看望你去委屈',
     userTitle: '点击获取表单全部数据',
     area: '值过长会自动换行',
   };

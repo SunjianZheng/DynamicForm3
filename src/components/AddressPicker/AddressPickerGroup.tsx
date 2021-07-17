@@ -14,6 +14,7 @@ interface AddressPickerGroupProps
 
 const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   const {
+    fieldProps,
     data = [],
     placeholder = '请选择',
     positionType = 'horizontal',
@@ -239,6 +240,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
         className={className}
         labelNumber={labelNumber}
         onClick={inputClick}
+        fieldProps={fieldProps}
       >
         {required && hasStar && (
           <span className="alitajs-dform-redStar">*</span>

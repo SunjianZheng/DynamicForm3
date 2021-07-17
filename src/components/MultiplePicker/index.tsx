@@ -1,8 +1,10 @@
 import React, { FC, useState, useEffect } from 'react';
+import classnames from 'classnames';
 import MultiplePickerGroup from './multiplePickerGroup';
 import { IMultiplePickerProps } from './interface';
 import Field from '../Field';
 import Hidden from '../Hidden';
+import { allPrefixCls } from '../../const/index';
 import './index.less';
 
 const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
@@ -19,6 +21,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     subTitle,
     hidden = false,
     onChange,
+    extra,
     data = [],
     alias = {
       label: 'label',
@@ -46,18 +49,24 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
 
   return (
     <Hidden hidden={hidden}>
-      <React.Fragment>
-        <div className="alitajs-dform-input-title">
-          {isVertical && (
-            <div className="alitajs-dform-vertical-title">
-              {required && hasStar && (
-                <span className="alitajs-dform-redStar">*</span>
-              )}
-              <span className="alitajs-dform-title">{title}</span>
-              {subTitle}
-            </div>
-          )}
-        </div>
+      <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
+        {isVertical && (
+          <div
+            className={classnames({
+              [`${allPrefixCls}-title`]: true,
+              [`${allPrefixCls}-vertical-title`]: true,
+            })}
+          >
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
+            {subTitle}
+            {extra !== '' && isVertical && (
+              <div className={`${allPrefixCls}-extra`}>{extra}</div>
+            )}
+          </div>
+        )}
         <Field
           name={fieldProps}
           rules={rules || [{ required, message: `请选择${title}` }]}
@@ -76,13 +85,15 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
             initValue={initValue}
             onChange={fieldChange}
           >
-            {required && hasStar && (
-              <span className="alitajs-dform-redStar">*</span>
-            )}
-            <span className="alitajs-dform-title">{title}</span>
+            <div className={`${allPrefixCls}-title`}>
+              {required && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div>{title}</div>
+            </div>
           </MultiplePickerGroup>
         </Field>
-      </React.Fragment>
+      </div>
     </Hidden>
   );
 };

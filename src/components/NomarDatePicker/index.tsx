@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import { changeDateFormat } from '../../utils';
+import { allPrefixCls } from '../../const/index';
 
 import './index.less';
 
@@ -33,6 +34,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = (props) => {
     subTitle,
     hidden = false,
     disabled = false,
+    extra,
     ...otherProps
   } = props;
 
@@ -43,12 +45,20 @@ const NomarDatePicker: FC<INomarDatePickerProps> = (props) => {
       {!hidden && (
         <React.Fragment>
           {isVertical && (
-            <div className="alitajs-dform-vertical-title">
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
+            >
               {required && hasStar && (
-                <span className="alitajs-dform-redStar">*</span>
+                <div className={`${allPrefixCls}-redStar`}>*</div>
               )}
-              <span className="alitajs-dform-title">{title}</span>
+              <div>{title}</div>
               {subTitle}
+              {extra !== '' && isVertical && (
+                <div className={`${allPrefixCls}-extra`}>{extra}</div>
+              )}
             </div>
           )}
           <div
