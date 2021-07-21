@@ -104,8 +104,8 @@ const TextItem: FC<ITextItemProps> = (props) => {
             </div>
           )}
         </div>
-        {!isVertical && <div className="am-input-extra">{extra}</div>}
         {arrow && <div className={`${allPrefixCls}-arrow-horizontal`} />}
+        {!isVertical && <div className="am-input-extra">{extra}</div>}
       </div>
     </div>
   );

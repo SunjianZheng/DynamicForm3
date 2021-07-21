@@ -1,44 +1,33 @@
-import React, { FC } from 'react';
-import { PropsType } from 'antd-mobile/es/date-picker/index';
-import { DatePicker, List } from 'antd-mobile';
+import React, { FC, useState } from 'react';
 import classnames from 'classnames';
-import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
-import { changeDateFormat } from '../../utils';
 import { allPrefixCls } from '../../const/index';
+import DatePickerGroup from './DatePickerGroup';
+import { INomarDatePickerProps } from './interface';
 
 import './index.less';
 
-export interface INomarDatePickerProps extends PropsType {
-  modeType?: PropsType['mode'];
-  fieldProps: string;
-  required?: boolean;
-  title: string;
-  rules?: Rule[];
-  placeholder?: string;
-  positionType?: 'vertical' | 'horizontal';
-  hasStar?: boolean;
-  subTitle?: string | React.ReactNode;
-  hidden?: boolean;
-}
-
 const NomarDatePicker: FC<INomarDatePickerProps> = (props) => {
+  const [initValue, setInitValue] = useState(undefined);
   const {
     fieldProps,
     required = false,
     title,
     rules,
-    modeType = 'date',
     positionType = 'horizontal',
     hasStar = true,
     subTitle,
     hidden = false,
     disabled = false,
     extra,
-    ...otherProps
+    onChange,
   } = props;
 
   const isVertical = positionType === 'vertical';
+
+  const fileChange = (e: any) => {
+    if (onChange) onChange(e);
+  };
 
   return (
     <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
@@ -71,8 +60,24 @@ const NomarDatePicker: FC<INomarDatePickerProps> = (props) => {
             <Field
               name={fieldProps}
               rules={rules || [{ required, message: `请选择${title}` }]}
+              shouldUpdate={(prevValue: any, nextValue: any) => {
+                setInitValue(nextValue && nextValue[fieldProps as any]);
+                return prevValue !== nextValue;
+              }}
             >
-              <DatePicker
+              <DatePickerGroup
+                {...props}
+                onChange={fileChange}
+                initValue={initValue}
+              >
+                <div className={`${allPrefixCls}-title`}>
+                  {required && hasStar && (
+                    <div className={`${allPrefixCls}-redStar`}>*</div>
+                  )}
+                  <div>{title}</div>
+                </div>
+              </DatePickerGroup>
+              {/* <DatePicker
                 {...otherProps}
                 mode={modeType}
                 title={title}
@@ -85,7 +90,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = (props) => {
                   )}
                   <span className="alitajs-dform-title">{title}</span>
                 </List.Item>
-              </DatePicker>
+              </DatePicker> */}
             </Field>
           </div>
         </React.Fragment>

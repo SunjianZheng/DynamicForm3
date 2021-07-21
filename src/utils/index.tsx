@@ -22,7 +22,11 @@ export const getInitKeyValue = ({
  * 时间展示类型改变事件
  * @param val
  */
-export const changeDateFormat = (val: Date, modeType: string) => {
+export const changeDateFormat = (
+  val: Date,
+  modeType: string,
+  format: string | undefined | ((value: Date) => string),
+) => {
   let dateFormat = '';
   switch (modeType) {
     case 'datetime':
@@ -40,6 +44,12 @@ export const changeDateFormat = (val: Date, modeType: string) => {
     default:
       dateFormat = dayjs(val).format('YYYY-MM-DD');
       break;
+  }
+  if (format && typeof format === 'string') {
+    dateFormat = dayjs(val).format(format);
+  }
+  if (format && typeof format === 'function') {
+    dateFormat = format(val);
   }
   return dateFormat;
 };
